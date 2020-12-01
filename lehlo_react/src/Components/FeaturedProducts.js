@@ -37,10 +37,12 @@ class FeaturedProduct extends React.Component {
         return (
             <div className = "productcontainer">
                 <div className = "headline">
-                    <p>Featured Products</p>
+                    <h3>Featured Products</h3>
                     <Link className = "productLink" to="/store">All Products</Link>
                 </div>
+                <div className = "fpcont">
                 {this.state.fpelements}
+                </div>
             </div>
 
         );

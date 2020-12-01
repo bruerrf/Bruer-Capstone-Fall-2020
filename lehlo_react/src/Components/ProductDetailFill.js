@@ -43,17 +43,20 @@ class ProductDetailFill extends React.Component {
     
     addToCart(product, target){
         var size = document.getElementById("sizeSelect");
-        var sizeSelectedValue = size.value;
-        let cartString = "";
-        if (localStorage.getItem("lehloRLcart")) {
-            cartString = localStorage.getItem("lehloRLcart");
+        var sizeSelectedValue = "";
+        if (size) {
+            sizeSelectedValue = size.value;
         }
-        let cart = cartString.split("|");
-        let newItem = product._id + "," + sizeSelectedValue;
-        cart.push(newItem);
-        localStorage.setItem("lehloRLcart", cart.join("|"));
+        let cartToken;
+        let cartArray = [];
+        if (localStorage.getItem("lehloRLcart")) {
+            cartToken = JSON.parse(localStorage.getItem("lehloRLcart"));
+            cartArray = cartToken.data;
+        }
+        cartArray.push({"_id":product._id, "name":product.name, "price":product.price, "size":sizeSelectedValue});
+        localStorage.setItem("lehloRLcart", JSON.stringify({"data":cartArray}));
         target.value = "Added to Cart!";
-        console.log(localStorage.getItem("lehloRLcart"));
+
     }
     /**<script type = "text/javascript">
                         function addToCart() {

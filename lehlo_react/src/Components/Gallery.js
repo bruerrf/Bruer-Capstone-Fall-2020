@@ -38,16 +38,19 @@ class Gallery extends React.Component {
     
     render(){
         return (
-            <div className = "storecontainer">
-                <h3>Shop Lehlo Brand Products</h3>
-                <select className = "sortSelect" onChange = {(e)=>this.onSort(e.target.value)}>
-                    <option value = "name">Name</option>
-                    <option value = "priceLow">Price (Low to High)</option>
-                    <option value = "priceHigh">Price (High to Low)</option>
-                </select>
-                {this.state.fpelements}
+            <div className = "storeGalleryBody">
+                <div className = "storeGalleryHeader">
+                    <h3>Shop Lehlo Brand Products</h3>
+                    <select className = "sortSelect" onChange = {(e)=>this.onSort(e.target.value)}>
+                        <option value = "name">Name</option>
+                        <option value = "priceLow">Price (Low to High)</option>
+                        <option value = "priceHigh">Price (High to Low)</option>
+                    </select>
+                </div>
+                <div className = "storecontainer">
+                    {this.state.fpelements}
+                </div>
             </div>
-
         );
     }
 }

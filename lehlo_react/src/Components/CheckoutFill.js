@@ -6,84 +6,83 @@ class CheckoutFill extends React.Component {
     constructor(props){
         super(props);
         this.socket = props.socket;
-        this.socket.emit("get_product_ts", {});
-        this.socket.on("get_product_tc", this.onGetProduct.bind(this));
         this.state = {"fpelements":[]};
         this.state = {"secretfpelements":[]};
         this.submitOrder = this.submitOrder.bind(this);
-    }
-    onGetProduct(data){
-        let rtn = [];
-        let secretRtn = [];
-        let products = data.products;
-        let cartItems = [];
-        let total = 0;
-        rtn.push(<h5>Items:</h5>);
-        if (localStorage.getItem("lehloRLcart")){
-            
-            let cartToken = localStorage.getItem("lehloRLcart").split("|");
-            for (let i = 1; i < cartToken.length; i++) {
-                let cartItems = cartToken[i].split(",");
-                for (let i = 0; i < products.length; i++) {
-                    if (cartItems[0] == products[i]._id) {
-                        let picfile = "../../Pictures/" + products[i].picfilename;
-                        rtn.push(<div className = "checkoutList">
-                            <p>{products[i].name}</p>
-                            <p>{cartItems[1]}</p>
-                            <p>{products[i].price}</p>
-                        </div>);
-                        secretRtn.push(cartItems[0] + " " + cartItems[1]);
-                        total += products[i].price;
-                    }
-                }
-            }
-            rtn.push(<div className = "checkoutTotal">
-                <h5>Total:</h5>
-                <p>{total}</p>
-                </div>);
-        }
-        
-        this.setState({"fpelements": rtn});
-        this.setState({"secretfpelements": secretRtn});
     }
     
     
     
     render(){
+        let cartToken = JSON.parse(localStorage.getItem("lehloRLcart"));
+        let cartArray = cartToken.data;
+        let newCartItems = [];
+        let total = 0;
+        for (let i = 0; i < cartArray.length; i++) {
+                let cartItem = cartArray[i];
+                newCartItems.push(<div className = "cartList" _id = {cartItem._id}>
+                        <p>{cartItem.name}</p>
+                        <p>{cartItem.size}</p>
+                        <p>{cartItem.price}</p>
+                    </div>);
+                    total += cartItem.price;
+        }
+        newCartItems.push(<div className = "total">
+            <h5>Total: </h5>
+            <p>{total}</p>
+            </div>);
         return (
             <div className = "checkoutContainer">
                 <h3>Checkout</h3>
                 <div className = "shipping">
                     <h4>Shipping & Contact Information</h4>
                     <form className = "shippingInfo">
-                        <label for="name" className = "checkoutLabels">Name:</label>
-                        <input type="text" id="name" name = "name"/><br/>
-                        <label for="email" className = "checkoutLabels">e-Mail Address:</label>
-                        <input type="text" id="email" name = "email"/><br/>
-                        <label for="address">Address:</label>
-                        <input type = "text" id = "address" name = "address"/><br/>
-                        <label for="address2">Address Line 2:</label>
-                        <input type = "text" id = "address2" name = "address2"/><br/>
-                        <label for="city">City:</label>
-                        <input type = "text" id = "city" name = "city"/>
-                        <label for="state">State:</label>
-                        <input type = "text" id = "state" name = "state"/>
-                        <label for="zip">Zip:</label>
-                        <input type = "text" id = "zip" name = "zip"/>
+                        <div className = "label">
+                            <label for="name" className = "checkoutLabels">Name:</label>
+                            <input type="text" id="name" name = "name"/><br/>
+                        </div>
+                        <div className = "label">
+                            <label for="email" className = "checkoutLabels">e-Mail Address:</label>
+                            <input type="text" id="email" name = "email"/><br/>
+                        </div>
+                        <div className = "label">
+                            <label for="address">Address:</label>
+                            <input type = "text" id = "address" name = "address"/><br/>
+                        </div>
+                        <div className = "label">
+                            <label for="address2">Address Line 2:</label>
+                            <input type = "text" id = "address2" name = "address2"/><br/>
+                        </div>
+                        <div className = "label">
+                            <label for="city">City:</label>
+                            <input type = "text" id = "city" name = "city"/>
+                        </div>
+                        <div className = "label">
+                            <label for="state">State:</label>
+                            <input type = "text" id = "state" name = "state"/>
+                        </div>
+                        <div className = "label">
+                            <label for="zip">Zip:</label>
+                            <input type = "text" id = "zip" name = "zip"/>
+                        </div>
                     </form>
                 </div>
                 <div className = "payment">
                     <h4>Payment Information</h4>
                     <form className = "shippingInfo">
-                        <label for="shippingName">Name:</label>
-                        <input type="text" id="shippingName" name = "shippingName"/><br/>
-                        <label for="paypalUsername">PayPal Username:</label>
-                        <input type="text" id="paypalUsername" name = "paypalUsername"/>
+                        <div className = "label">
+                            <label for="shippingName">Name:</label>
+                            <input type="text" id="shippingName" name = "shippingName"/><br/>
+                        </div>
+                        <div className = "label">
+                            <label for="paypalUsername">PayPal Username:</label>
+                            <input type="text" id="paypalUsername" name = "paypalUsername"/>
+                        </div>
                     </form>
                 </div>
                 <div className = "orderSummary">
                     <h4>Order Summary</h4>
-                    {this.state.fpelements}
+                    {newCartItems}
                     <input type = "button" value = "Submit Order" onClick={()=>{this.submitOrder()}}/>
                 </div>
             </div>
@@ -102,8 +101,11 @@ class CheckoutFill extends React.Component {
         rtn.orderZip = document.getElementById("zip").value;
         rtn.orderShippingName = document.getElementById("shippingName").value;
         rtn.orderpaypalUsername = document.getElementById("paypalUsername").value;
-        rtn.orderSummary = this.state.secretfpelements
+        let cartToken = JSON.parse(localStorage.getItem("lehloRLcart"));
+        let cartArray = cartToken.data;
+        rtn.orderSummary = cartArray;
         this.socket.emit("submit_order", rtn);
+        window.location.pathname = "/orderCompleted";
          
     }
 }

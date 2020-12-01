@@ -1,10 +1,35 @@
-.storecontainer { /* "." for class, "#" for id*/
+.storeGalleryBody { /* "." for class, "#" for id*/
     width: 80%;
-    overflow-x:auto;
-    overflow-y:auto;
+    overflow-y:visible;
     margin: auto;
     padding: 10px;
     background-color:#ffffff;
+    
+}
+.storecontainer { /* "." for class, "#" for id*/
+    width: 100%;
+    overflow-x:auto;
+    overflow-y:visible;
+    margin: auto;
+    background-color:#ffffff;
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.storeGalleryHeader {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    padding-right:6.5%;
+    padding-left: 6.5%;
+}
+
+.storeGalleryHeader select {
+    height: 30px;
+    width: 20%;
 }
 
 /** box style*/
@@ -15,10 +40,10 @@
     margin-left:13px;
     margin-right:13px;
     border: 1px solid #ccc;
-    float:left;
-    width: 22%;
-    height:0;
-    padding-bottom: 25%;
+    display: flex;
+    flex-direction:row;
+    width:27%;
+    align-items:center;
     
 }
 
@@ -33,6 +58,7 @@
     text-align:center;
     word-break: break-word;
     color:#000000;
+    margin:0;
 }
 
 .storebox a {
