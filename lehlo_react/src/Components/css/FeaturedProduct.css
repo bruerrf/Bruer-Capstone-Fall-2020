@@ -1,0 +1,50 @@
+.productcontainer { /* "." for class, "#" for id*/
+    width: 80%;
+    margin: auto;
+    overflow-x:auto;
+    padding: 10px;
+    background-color:#ffffff;
+}
+
+/** box style*/
+
+.box {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left:13px;
+    margin-right:13px;
+    border: 1px solid #ccc;
+    float:left;
+    width: 22%;
+    height:0;
+    padding-bottom: 25%;
+    
+    
+}
+
+.box img {
+    width: 80%;
+    align-items:center;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.box p {
+    text-align:center;
+    word-break: break-word;
+    color:#000000;
+}
+
+.box a {
+    text-decoration: none;
+    
+}
+
+.headline {
+    display: block;
+}
+
+.headline p {
+    
+}

@@ -1,0 +1,32 @@
+.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Image Image Image ProductText ProductText";
+}
+
+.productContainer {
+    width: 90%;
+    background-color:#ffffff;
+    margin:auto;
+    overflow-x:visible;
+    padding:10px;
+}
+
+.image { 
+    grid-area: Image;
+    width:100%;
+    height:100%;
+    margin-top: 5%;
+}
+
+.image img {
+    width:100%;
+}
+.productText { 
+    grid-area: ProductText;
+    margin-left: 7%;
+    
+}

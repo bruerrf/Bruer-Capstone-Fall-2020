@@ -1,0 +1,30 @@
+.aboutBody {
+   background-color:#cadcd8;
+}
+
+.grid-container3 {
+  display: grid;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:#ffffff;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "About About Bio";
+}
+.about { grid-area: About; 
+background-color: #ffffff;
+padding: 10px;  
+color:#000000;}
+
+.bio { grid-area: Bio; 
+padding: 10px; 
+background-color: #ffffff;}
+
+.bio img {
+    width:90%;
+    margin-right:auto;
+    margin-left:auto;
+}

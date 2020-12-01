@@ -1,0 +1,31 @@
+.guidesBody {
+      background-color:#cadcd8;
+}
+
+.grid-container2 {
+  display: grid;
+  width: 80%;
+  margin: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Blog1 Blog1 Blog1 Menu"
+    "Blog2 Blog2 Blog2 Menu";
+}
+.guide1 { 
+    grid-area: Blog1; 
+    background-color: #ffffff;
+    padding-left:20px;
+}
+.guide2 { 
+    grid-area: Blog2; 
+    background-color: #ffffff;
+    padding-left:20px;
+}
+.menu2 { grid-area: Menu; 
+background-color: #ffffff;}
+
+.menu2 a {
+    display: block;
+}

@@ -1,0 +1,23 @@
+.container5 { /* "." for class, "#" for id*/
+    width: 80%;
+    background-color:#ffffff;
+    margin:auto;
+    overflow-x:visible;
+    padding:10px;
+    height: 81%;
+}
+
+.cartList {
+    border: 2px solid black;
+}
+
+.cartList p {
+    display: inline-block;
+    min-width: 33%;
+    text-align: center;
+}
+.cartList input {
+    display: inline-block;
+    min-width: 33%;
+    text-align: center;
+}

@@ -1,0 +1,8 @@
+.container { /* "." for class, "#" for id*/
+    width: 80%;
+    background-color:#ffffff;
+    margin:auto;
+    overflow-x:visible;
+    padding:10px;
+    border-top: 2px solid black;
+}
